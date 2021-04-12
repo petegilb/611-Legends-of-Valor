@@ -1,6 +1,8 @@
 
 package lmh.creatures;
 
+import lmh.interfaces.Move;
+
 // This class represents a dragon monster.
 public class Dragon extends Monster
 {

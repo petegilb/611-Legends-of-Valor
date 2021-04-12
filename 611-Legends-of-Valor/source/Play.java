@@ -6,7 +6,7 @@ public class Play
 {
   public static void main (String[] args)
   {
-    Game game = new LMHGame();
+    lmh.Game game = new lmh.LMHGame();
     game.play();
   }
 }
