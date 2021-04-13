@@ -9,8 +9,9 @@ public class Cell implements Drawable
 {
   public static final String TYPE_BLOCKED = "X";
   public static final String TYPE_COMMON = " ";
-  public static final String TYPE_MARKET = "M";
+  public static final String TYPE_MARKET = "$";
   public static final String TYPE_HEROES = "H";
+  public static final String TYPE_MONSTER = "M";
 
   private boolean endOfRow;
   private String displayValue;

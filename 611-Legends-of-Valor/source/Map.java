@@ -8,6 +8,8 @@ import lmh.interfaces.*;
 // the legend and the menu. Shows hero party position on the map.
 public class Map implements Drawable
 {
+  private final int[] dx = new int[]{1, -1, 0, 0, 1, -1, -1, 1};
+  private final int[] dy = new int[]{0, 0, 1, -1, -1, -1, 1, 1};
   private final int BLOCKED_CELL_RATIO = 20,
                     MARKET_CELL_RATIO = 30,
                     COMMON_CELL_RATIO = 50;
@@ -69,8 +71,10 @@ public class Map implements Drawable
 
     Cell cell = map[row][col];
 
-    if (cell.getDisplayValue() == Cell.TYPE_HEROES)
+    if (cell.getDisplayValue() == Cell.TYPE_HEROES){
       return cell;
+    }
+
 
     if (cell.getType() == Cell.TYPE_BLOCKED)
       return null;
@@ -113,4 +117,7 @@ public class Map implements Drawable
 
     System.out.println();
   }
+
+  public int getWidth(){ return this.width; }
+  public int getHeight(){ return this.height; }
 }
