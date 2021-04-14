@@ -50,4 +50,5 @@
 ./source/interfaces/Usable.java
 ./source/interfaces/Trader.java
 ./source/interfaces/Action.java
+./source/interfaces/Move.java
 ./source/interfaces/TextColors.java
