@@ -13,6 +13,7 @@ public abstract class Monster extends Creature implements Fighter
   protected int defense;
   protected int dodgeChance;
 
+
   public Monster()
   {
     this ("unknown monster", 1, "Monster", 0, 0, 0);
@@ -121,4 +122,9 @@ public abstract class Monster extends Creature implements Fighter
       System.out.println (name + "'s skills decrease as a result of a spell!");
     }
   }
+
+  // TODO: 2021/4/11 Monster move logic, monster can only move forward
+  public void makeMovement(int row, int col){};
+
+
 }

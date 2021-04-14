@@ -2,10 +2,15 @@
 package lmh.creatures;
 
 import java.util.*;
+
+import lmh.Cell;
 import lmh.interfaces.*;
 import lmh.actions.*;
 import lmh.items.*;
 import lmh.locations.*;
+
+import static lmh.interfaces.TextColors.ANSI_RED;
+import static lmh.interfaces.TextColors.ANSI_RESET;
 
 // Abstracts and holds state for all heroes in the game.
 // Heroes are main users of all items in the game, so they implement many interfaces.
@@ -346,4 +351,10 @@ public abstract class Hero extends Creature implements Fighter, User, Trader, Dr
   {
     return;
   }
+
+  // TODO: 2021/4/12 teleport  / back to nexus 
+  public void teleport(){};
+
+  public void backToNexus(){};
+
 }
