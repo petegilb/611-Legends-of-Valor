@@ -60,8 +60,16 @@ public class LMHGame extends AdventureGame implements TextColors
     }
   }
 
+//  @Override
+//  public void mapMove(int row, int col) {
+//
+//  }
+
+// TODO: 2021/4/13 check cells neighbors to find whether there have to have a fight.
+// TODO: 2021/4/13 find cells which are available
   public void play()
   {
+    // TODO: 2021/4/14 for convenience, I just initiate the monster/hero at fixed postion, Better idea is to use respawn() method
     while (true)
     {
       map.draw();

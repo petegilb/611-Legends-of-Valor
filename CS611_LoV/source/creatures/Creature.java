@@ -1,8 +1,6 @@
 
 package lmh.creatures;
 
-import java.util.*;
-
 // A class that represents all creatures in the game: heroes and monsters and
 // any other creatures that might be added in any future expansions.
 public abstract class Creature implements Cloneable
@@ -22,7 +20,7 @@ public abstract class Creature implements Cloneable
     this.name = name;
     this.type = type;
     this.level = level;
-    health = level*100;
+    health = level * 100;
   }
 
   public void setName (String name)
@@ -81,4 +79,6 @@ public abstract class Creature implements Cloneable
   {
     return super.clone();
   }
+
+
 }

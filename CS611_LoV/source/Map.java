@@ -25,6 +25,7 @@ public class Map implements Drawable
 
   public Map (int width, int height, int row, int col)
   {
+
     int mapSize = width * height;
 
     //assuming we have an 8x8 grid fixed for Legends of Valor...
@@ -78,8 +79,9 @@ public class Map implements Drawable
     //set the tiles in the board itself
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
+        // get the cell num
         if(i == 0 || i == height-1){ //if it's the first or the last row
-          if(j == 2 || j==5){ //assuming the grid is 8x8 for now
+          if(j == 2 || j == 5){ //assuming the grid is 8x8 for now
             //if it's a blocked column
             map[i][j] = new Cell(Cell.TYPE_BLOCKED);
           }
@@ -95,11 +97,21 @@ public class Map implements Drawable
           map[i][j] = cells.removeFirst();
         }
       }
-
       map[i][width-1].setEndOfRow(true);
     }
 
     map[row][col].setDisplayValue (Cell.TYPE_HEROES);
+    setCellsNum();
+  }
+
+  private void setCellsNum() {
+    for(int i = 0; i < height; i++){
+      for(int j = 0; j < width; j++){
+        int cellNum = i * width + j;
+        map[i][j].setCellNum(cellNum);
+        System.out.print(" " + cellNum);
+      }
+    }
   }
 
   public Cell getCell (int row, int col)
@@ -123,6 +135,7 @@ public class Map implements Drawable
   {
     System.out.println();
     String spaces = "   ";
+
     for (int i = 0; i < height; i++) {
       if(i!=0){
         System.out.println("");
@@ -138,12 +151,14 @@ public class Map implements Drawable
         if(map[i][j].getType() == map[i][j].TYPE_BLOCKED){
           System.out.print("| X X X |");
         }
+        else if(map[i][j].getType() == Cell.TYPE_MONSTER || map[i][j].getType() == Cell.TYPE_HEROES){
+          System.out.print("|   "+ map[i][j].getType() + "   |");
+        }
         else{
           System.out.print("|       |");
         }
 
         //if there is a hero or monster in the first slot
-
 
         //in the second slot
 
@@ -167,6 +182,7 @@ public class Map implements Drawable
 //    }
 
     //System.out.println("+");
+    //showCellsNum(); // display the cell num.
     displayLegendAndMenu();
   }
 
@@ -184,4 +200,32 @@ public class Map implements Drawable
 
     System.out.println();
   }
+
+
+  public void showCellsNum(){
+    for(int i = 0; i < width; i++){
+      for(int j = 0; j < height; j++){
+        System.out.print(map[i][j].getCellNum() + " ");
+      }
+      System.out.println();
+    }
+  }
+
+  /**
+   * check if the cell at given row and col is accessible
+   * @param row
+   * @param col
+   * @return true if accessible;
+   */
+  public boolean isAccesibleCell(int row, int col){
+    if(row < 0 || row >= this.height || col < 0 || col >= this.width)
+      return false;
+    if(map[row][col].getType() == Cell.TYPE_BLOCKED)
+      return false;
+    return true;
+  }
+
+  public int getWidth() { return width; }
+
+  public int getHeight() { return width; }
 }

@@ -23,4 +23,6 @@ public abstract class AdventureGame extends Game
   }
 
   public abstract void mapMove (int row, int col);
+
+//  public abstract void mapMove(int row, int col, String creatureType);
 }
