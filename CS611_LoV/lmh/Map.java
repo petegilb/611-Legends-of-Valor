@@ -3,6 +3,7 @@ package lmh;
 
 import java.util.*;
 import lmh.interfaces.*;
+import lmh.creatures.*;
 
 // A class for the game map. Initializes all the cells randomly. Displays
 // the legend and the menu. Shows hero party position on the map.
@@ -93,14 +94,14 @@ public class Map implements Drawable
         else if(j == 2 || j==5){ //if it's a blocked column
           map[i][j] = new Cell(Cell.TYPE_BLOCKED);
         }
-        else{
+        else{ //if not then randomly get a cell from the linkedList
           map[i][j] = cells.removeFirst();
         }
       }
       map[i][width-1].setEndOfRow(true);
     }
 
-    map[row][col].setDisplayValue (Cell.TYPE_HEROES);
+    //map[row][col].setDisplayValue (Cell.TYPE_HEROES);
     setCellsNum();
   }
 
@@ -109,7 +110,7 @@ public class Map implements Drawable
       for(int j = 0; j < width; j++){
         int cellNum = i * width + j;
         map[i][j].setCellNum(cellNum);
-        System.out.print(" " + cellNum);
+        //System.out.print(" " + cellNum);
       }
     }
   }
@@ -123,6 +124,10 @@ public class Map implements Drawable
 
     //if the current location is where the heroes are located
     if (cell.getDisplayValue() == Cell.TYPE_HEROES)
+      return cell;
+
+    //if there is a monster there
+    if (cell.getDisplayValue() == Cell.TYPE_MONSTER)
       return cell;
 
     if (cell.getType() == Cell.TYPE_BLOCKED)
@@ -147,18 +152,26 @@ public class Map implements Drawable
 
       //for each cell second row
       for (int j = 0; j < width; j++){
+        String displayVal = map[i][j].getDisplayValue();
+
         //if the cell is blocked
         if(map[i][j].getType() == map[i][j].TYPE_BLOCKED){
           System.out.print("| X X X |");
         }
-        else if(map[i][j].getType() == Cell.TYPE_MONSTER || map[i][j].getType() == Cell.TYPE_HEROES){
-          System.out.print("|   "+ map[i][j].getType() + "   |");
+        //if there is a hero or monster in the first slot
+        //i have to fix this but currently im acting as if the display val has more than one char then it has 2 creatures in it
+        else if(displayVal != null && displayVal.length() > 0){
+          if(displayVal.length() > 1){
+            System.out.println("| "+ displayVal.charAt(0) + " " + displayVal.charAt(1) + " |");
+          }
+          else{
+            System.out.print("| "+ displayVal + "     |");
+          }
         }
         else{
           System.out.print("|       |");
         }
 
-        //if there is a hero or monster in the first slot
 
         //in the second slot
 
@@ -186,17 +199,34 @@ public class Map implements Drawable
     displayLegendAndMenu();
   }
 
+  //updates a cell with hero info or monster info
+  public void updateCell(Creature creature){
+    int x = creature.getxLoc();
+    int y = creature.getyLoc();
+    String type = creature.getType();
+    if(type.equals("Paladin") || type.equals("Sorcerer") || type.equals("Warrior") || type.equals("Hero")){
+      map[x][y].setDisplayValue(Cell.TYPE_HEROES);
+    }
+    else if(type.equals("Dragon") || type.equals("Exoskeleton") || type.equals("Spirit")){
+      map[x][y].setDisplayValue(Cell.TYPE_MONSTER);
+    }
+  }
+
   //to be updated...
   private void displayLegendAndMenu ()
   {
     System.out.print("\nSquares marked with " + Cell.TYPE_BLOCKED + " are not accessible. ");
-    System.out.print("Squares marked with " + Cell.TYPE_MARKET + " are marketplaces. ");
-    System.out.print("Empty squares are regular squares where combat is possible. ");
-    System.out.println("Current hero party position is shown by " + Cell.TYPE_HEROES);
+    System.out.print("Squares marked with " + Cell.TYPE_NEXUS + " are the Nexus. ");
+    System.out.print("Cells marked with: " + Cell.TYPE_BUSH + " " + Cell.TYPE_KOULOU + " " + Cell.TYPE_CAVE + " are bushes, koulou cells, and cave cells respectively.");
+    System.out.println(" Hero positions are shown by " + Cell.TYPE_HEROES);
 
+//    System.out.println("\nThe following actions are available: " +
+//                       "W - move up, A - move left, S - move down, " +
+//                       "D - move right, I - show inventory, Q - quit game");
     System.out.println("\nThe following actions are available: " +
-                       "W - move up, A - move left, S - move down, " +
-                       "D - move right, I - show inventory, Q - quit game");
+                       "M - Move, A - Attack, B - Back, " +
+                       "T - Teleport, I - show inventory, Q - quit game");
+
 
     System.out.println();
   }

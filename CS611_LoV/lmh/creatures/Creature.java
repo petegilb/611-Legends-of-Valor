@@ -9,6 +9,8 @@ public abstract class Creature implements Cloneable
   protected String type;
   protected int level;
   protected int health;
+  protected int xLoc;
+  protected int yLoc;
 
   public Creature()
   {
@@ -21,6 +23,19 @@ public abstract class Creature implements Cloneable
     this.type = type;
     this.level = level;
     health = level * 100;
+  }
+
+  public void setPos(int x, int y){
+    xLoc = x;
+    yLoc = y;
+  }
+
+  public int getxLoc(){
+    return xLoc;
+  }
+
+  public int getyLoc(){
+    return yLoc;
   }
 
   public void setName (String name)
