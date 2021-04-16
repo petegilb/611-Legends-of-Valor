@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /Users/yuanwei/IdeaProjects/611-Legends-of-Valor-map/CS611_LoV
+cd ./
 find . -name "*.class" -type f -delete
 find . -name "*.java" > sources.txt
 # if first running : mkdir classes
