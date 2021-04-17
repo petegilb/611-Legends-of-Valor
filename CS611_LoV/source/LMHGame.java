@@ -12,6 +12,21 @@ import lmh.items.*;
 // advance and end the game.
 public class LMHGame extends AdventureGame implements TextColors
 {
+  private final String GAME_LOGO = " _                              _              __  __     __    _            \n" +
+          "| |    ___  __ _  ___ _ __   __| |___    ___  / _| \\ \\   / /_ _| | ___  _ __ \n" +
+          "| |   / _ \\/ _` |/ _ \\ '_ \\ / _` / __|  / _ \\| |_   \\ \\ / / _` | |/ _ \\| '__|\n" +
+          "| |__|  __/ (_| |  __/ | | | (_| \\__ \\ | (_) |  _|   \\ V / (_| | | (_) | |   \n" +
+          "|_____\\___|\\__, |\\___|_| |_|\\__,_|___/  \\___/|_|      \\_/ \\__,_|_|\\___/|_|   \n" +
+          "           |___/                                                             ";
+
+  private final String GAME_RULES = "Legends of Valor is played in a 8x8 grid. The grid is divided in three lanes as\n" +
+          "Each lane has a width of two cells. Each cell itself has a width of\n" +
+          "two. More specifically, this means that in every cell there can be either no one, one\n" +
+          "hero, one monster, or one hero and one monster, but never two heroes or two\n" +
+          "monsters.  The first and the last\n" +
+          "row will represent a Nexus. The first row will be the Nexus for monsters while the last\n" +
+          "will be the Nexus for heroes. A Nexus can be thought of as the headquarters of a " + "team. ";
+
   private final int COMBAT_CHANCE = 50;
   private ArrayList<Hero> heroes;
 
@@ -133,15 +148,16 @@ public class LMHGame extends AdventureGame implements TextColors
   public void displayIntro()
   {
     System.out.println();
-    System.out.println ("LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH");
-    System.out.println ("*                                                       *");
-    System.out.println ("*         **           **       **    **     **         *");
-    System.out.println ("*         **           ***     ***    **     **         *");
-    System.out.println ("*         **           ** *   * **    ** *** **         *");
-    System.out.println ("*         **           **   *   **    **     **         *");
-    System.out.println ("*         *********    **       **    **     **         *");
-    System.out.println ("*                                                       *");
-    System.out.println ("***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***");
+    System.out.println(GAME_LOGO);
+//    System.out.println ("LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH");
+//    System.out.println ("*                                                       *");
+//    System.out.println ("*         **           **       **    **     **         *");
+//    System.out.println ("*         **           ***     ***    **     **         *");
+//    System.out.println ("*         **           ** *   * **    ** *** **         *");
+//    System.out.println ("*         **           **   *   **    **     **         *");
+//    System.out.println ("*         *********    **       **    **     **         *");
+//    System.out.println ("*                                                       *");
+//    System.out.println ("***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***");
     System.out.println();
     System.out.println("Welcome to the game of \"Legends: Monsters and Heroes\"!");
     System.out.println("The object of the game is to roam this holy land " +

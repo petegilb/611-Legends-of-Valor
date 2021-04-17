@@ -8,6 +8,29 @@ import lmh.interfaces.*;
 // the legend and the menu. Shows hero party position on the map.
 public class Map implements Drawable
 {
+  public static final String ANSI_RESET ="\u001B[0m";
+  public static final String ANSI_BLACK ="\u001B[30m";
+  public static final String ANSI_RED ="\u001B[31m";
+  public static final String ANSI_GREEN ="\u001B[32m";
+  public static final String ANSI_YELLOW ="\u001B[33m";
+  public static final String ANSI_BLUE ="\u001B[34m";
+  public static final String ANSI_PURPLE ="\u001B[35m";
+  public static final String ANSI_CYAN ="\u001B[36m";
+  public static final String ANSI_WHITE ="\u001B[37m";
+
+  private final String ACTION_INFOS = "\nThe following actions are available: \n" +
+          "W - move up, A - move left, S - move down, \n" +
+          "D - move right, I - show inventory, Q - quit game\n" +
+          "Q - attack, C - cast a spell" + "\n" + "B - go back to nexus, T - Teleport other lane";
+
+  private final String CELL_INFOS = "\nSquares marked with "+ ANSI_WHITE +  Cell.TYPE_BLOCKED + " are " + ANSI_WHITE + "not accessible" + ANSI_RESET + "\n" +
+          "Squares marked with " + ANSI_RED + Cell.TYPE_MARKET + ANSI_RESET + " are " + ANSI_RED + "marketplaces" + ANSI_RESET + "\n" +
+          "Squares marked with " + ANSI_GREEN + Cell.TYPE_BUSH +   ANSI_RESET  + " are " + ANSI_GREEN + "BushCells" + ANSI_RESET + "\n" +
+          "Squares marked with " + ANSI_CYAN + Cell.TYPE_CAVE +   ANSI_RESET + " are " + ANSI_CYAN + "CaveCells" + ANSI_RESET + "\n" +
+          "Squares marked with " + ANSI_YELLOW + Cell.TYPE_KOULOU + ANSI_RESET + " are " + ANSI_YELLOW + " KouluCells" + ANSI_RESET + "\n" +
+          "Empty squares are regular squares where combat is possible. \n" +
+          "Current hero party position is shown by " + Cell.TYPE_HEROES +  "\n";
+
   private final int BLOCKED_CELL_RATIO = 25, //should be 16
                     NEXUS_CELL_RATIO = 19, //should be 12
                     KOULOU_CELL_RATIO = 14,
@@ -189,14 +212,17 @@ public class Map implements Drawable
   //to be updated...
   private void displayLegendAndMenu ()
   {
-    System.out.print("\nSquares marked with " + Cell.TYPE_BLOCKED + " are not accessible. ");
-    System.out.print("Squares marked with " + Cell.TYPE_MARKET + " are marketplaces. ");
-    System.out.print("Empty squares are regular squares where combat is possible. ");
-    System.out.println("Current hero party position is shown by " + Cell.TYPE_HEROES);
+    System.out.print(CELL_INFOS);
+//    System.out.print("Squares marked with " + Cell.TYPE_MARKET + " are marketplaces. \n");
+//    System.out.print("Squares marked with " + Cell.TYPE_NEXUS + " are NexusCells. \n");
+//    System.out.print("Squares marked with " + Cell.TYPE_BUSH + " are BushCells. \n");
+//    System.out.print("Squares marked with " + Cell.TYPE_CAVE + " are CaveCells. \n");
+//    System.out.print("Squares marked with " + Cell.TYPE_KOULOU + " are KouluCells. \n");
+//    System.out.println("Empty squares are regular squares where combat is possible. ");
 
-    System.out.println("\nThe following actions are available: " +
-                       "W - move up, A - move left, S - move down, " +
-                       "D - move right, I - show inventory, Q - quit game");
+    //System.out.println("Current hero party position is shown by " + Cell.TYPE_HEROES);
+
+    System.out.println("\n " + ACTION_INFOS);
 
     System.out.println();
   }
