@@ -19,11 +19,11 @@ public class LMHGame extends AdventureGame implements TextColors
           "|_____\\___|\\__, |\\___|_| |_|\\__,_|___/  \\___/|_|      \\_/ \\__,_|_|\\___/|_|   \n" +
           "           |___/                                                             ";
 
-  private final String GAME_RULES = "Legends of Valor is played in a 8x8 grid. The grid is divided in three lanes as\n" +
-          "Each lane has a width of two cells. Each cell itself has a width of\n" +
-          "two. More specifically, this means that in every cell there can be either no one, one\n" +
-          "hero, one monster, or one hero and one monster, but never two heroes or two\n" +
-          "monsters.  The first and the last\n" +
+  private final String GAME_RULES = "Legends of Valor is played in a 8x8 grid.\nThe grid is divided in three lanes as" +
+          "Each lane has a width of two cells. Each cell itself has a width of " +
+          "two. More specifically, this means that in every cell there can be either no one, \none" +
+          "hero, one monster, or one hero and one monster, but never two heroes or two" +
+          "monsters.  The first and the last " +
           "row will represent a Nexus. The first row will be the Nexus for monsters while the last\n" +
           "will be the Nexus for heroes. A Nexus can be thought of as the headquarters of a " + "team. ";
 
@@ -160,9 +160,7 @@ public class LMHGame extends AdventureGame implements TextColors
 //    System.out.println ("***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***");
     System.out.println();
     System.out.println("Welcome to the game of \"Legends: Monsters and Heroes\"!");
-    System.out.println("The object of the game is to roam this holy land " +
-                       "cleansing it of the horrific monsters that don't belong " +
-                       "here!");
+    System.out.println(GAME_RULES);
     System.out.println();
   }
 
