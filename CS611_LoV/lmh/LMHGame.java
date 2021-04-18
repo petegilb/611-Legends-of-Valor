@@ -17,6 +17,21 @@ public class LMHGame extends AdventureGame implements TextColors
   private ArrayList<Monster> monsters;
   private int maxLevel;
 
+  private final String GAME_LOGO = " _                              _              __  __     __    _            \n" +
+          "| |    ___  __ _  ___ _ __   __| |___    ___  / _| \\ \\   / /_ _| | ___  _ __ \n" +
+          "| |   / _ \\/ _` |/ _ \\ '_ \\ / _` / __|  / _ \\| |_   \\ \\ / / _` | |/ _ \\| '__|\n" +
+          "| |__|  __/ (_| |  __/ | | | (_| \\__ \\ | (_) |  _|   \\ V / (_| | | (_) | |   \n" +
+          "|_____\\___|\\__, |\\___|_| |_|\\__,_|___/  \\___/|_|      \\_/ \\__,_|_|\\___/|_|   \n" +
+          "           |___/                                                             ";
+
+  private final String GAME_RULES = "Legends of Valor is played in a 8x8 grid.\nThe grid is divided in three lanes as" +
+          "Each lane has a width of two cells. Each cell itself has a width of " +
+          "two. More specifically, this means that in every cell there can be either no one, \none" +
+          "hero, one monster, or one hero and one monster, but never two heroes or two" +
+          "monsters.  The first and the last " +
+          "row will represent a Nexus. The first row will be the Nexus for monsters while the last\n" +
+          "will be the Nexus for heroes. A Nexus can be thought of as the headquarters of a " + "team. ";
+
   //locations where heroes can spawn -> indexes correspond to each other
   private final int[] spawnLocY = new int[]{0, 3, 6};
 
@@ -81,11 +96,8 @@ public class LMHGame extends AdventureGame implements TextColors
 
   }
 
-// TODO: 2021/4/13 check cells neighbors to find whether there have to have a fight.
-// TODO: 2021/4/13 find cells which are available
   public void play()
   {
-    // TODO: 2021/4/14 for convenience, I just initiate the monster/hero at fixed postion, Better idea is to use respawn() method
     while (true) {
       map.draw();
       //get the input from the player each turn
@@ -94,7 +106,7 @@ public class LMHGame extends AdventureGame implements TextColors
         //if they're alive
 
         //do this
-        System.out.println("Now controlling " + hero.getName());
+        System.out.println("Now controlling " + ANSI_GREEN + hero.getName() + ANSI_RESET);
         System.out.println("Please input your next move: ");
         String action = Game.getInput (new String[]{ "M", "A", "B", "T", "I", "Q" });
         switch (action)
@@ -215,27 +227,16 @@ public class LMHGame extends AdventureGame implements TextColors
   public void displayIntro()
   {
     System.out.println();
-    System.out.println ("LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH");
-    System.out.println ("*                                                       *");
-    System.out.println ("*         **           **       **    **     **         *");
-    System.out.println ("*         **           ***     ***    **     **         *");
-    System.out.println ("*         **           ** *   * **    ** *** **         *");
-    System.out.println ("*         **           **   *   **    **     **         *");
-    System.out.println ("*         *********    **       **    **     **         *");
-    System.out.println ("*                                                       *");
-    System.out.println ("***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***LMH***");
+    System.out.println(ANSI_YELLOW + GAME_LOGO + ANSI_RESET);
     System.out.println();
-    System.out.println("Welcome to the game of \"Legends of Valor\"!");
-    System.out.println("The object of the game is to roam this holy land " +
-                       "cleansing it of the horrific monsters that don't belong " +
-                       "here!");
+    System.out.println(GAME_RULES);
     System.out.println();
   }
 
   public void quit()
   {
     System.out.println("\n**************** Game Over ****************\n");
-    System.out.println("Thank you for playing!\n");
+    System.out.println(ANSI_GREEN + "Thank you for playing!\n" + ANSI_RESET);
 
     for (Hero hero: heroes)
       System.out.println(hero);

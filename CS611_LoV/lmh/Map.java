@@ -7,7 +7,7 @@ import lmh.creatures.*;
 
 // A class for the game map. Initializes all the cells randomly. Displays
 // the legend and the menu. Shows hero party position on the map.
-public class Map implements Drawable
+public class Map implements Drawable, TextColors
 {
   private final int BLOCKED_CELL_RATIO = 25, //should be 16
                     NEXUS_CELL_RATIO = 19, //should be 12
@@ -156,7 +156,7 @@ public class Map implements Drawable
 
         //if the cell is blocked
         if(map[i][j].getType() == map[i][j].TYPE_BLOCKED){
-          System.out.print("| X X X |");
+          System.out.print("| " + ANSI_RED + "X X X" + ANSI_RESET + " |");
         }
         //if there is a hero or monster in the first slot
         //i have to fix this but currently im acting as if the display val has more than one char then it has 2 creatures in it
@@ -165,7 +165,7 @@ public class Map implements Drawable
             System.out.println("| "+ displayVal.charAt(0) + " " + displayVal.charAt(1) + " |");
           }
           else{
-            System.out.print("| "+ displayVal + "     |");
+            System.out.print("| "+ ANSI_CYAN +  displayVal + ANSI_RESET +  "     |");
           }
         }
         else{

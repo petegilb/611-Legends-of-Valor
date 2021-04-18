@@ -9,17 +9,17 @@ import java.util.List;
 
 // This class represents a cell on the map. Each cell holds its own state,
 // draws and updates itself.
-public class Cell implements Drawable
+public class Cell implements Drawable, TextColors
 {
-  public static final String TYPE_BLOCKED = "X";
+  public static final String TYPE_BLOCKED = ANSI_RED + "X" + ANSI_RESET;
   public static final String TYPE_COMMON = "R"; // r for regular
   public static final String TYPE_MARKET = "$"; // $ represent for market
   public static final String TYPE_HEROES = "H";
   public static final String TYPE_MONSTER = "M";
-  public static final String TYPE_BUSH = "B";
-  public static final String TYPE_CAVE = "C";
-  public static final String TYPE_KOULOU = "K";
-  public static final String TYPE_NEXUS = "N";
+  public static final String TYPE_BUSH = ANSI_YELLOW + "B" + ANSI_RESET;
+  public static final String TYPE_CAVE = ANSI_BLUE + "C" + ANSI_RESET;
+  public static final String TYPE_KOULOU = ANSI_GREEN + "K" + ANSI_RESET;
+  public static final String TYPE_NEXUS = ANSI_PURPLE + "N" + ANSI_RESET;
 
   private boolean endOfRow;
   private String displayValue;
@@ -90,16 +90,6 @@ public class Cell implements Drawable
   {
     String output = type;
     String num = String.valueOf(getCellNum());
-
-//    if (displayValue != null){
-//      output = displayValue;
-//    }
-//    else{
-//      output+= " - ";
-//      output+= type;
-//      output+= " - ";
-//      output+= type;
-//    }
     output+= " - ";
     output+= type;
     output+= " - ";

@@ -1,9 +1,10 @@
 
 package lmh.creatures;
+import lmh.interfaces.*;
 
 // A class that represents all creatures in the game: heroes and monsters and
 // any other creatures that might be added in any future expansions.
-public abstract class Creature implements Cloneable
+public abstract class Creature implements Cloneable, TextColors
 {
   protected String name;
   protected String type;
@@ -80,7 +81,7 @@ public abstract class Creature implements Cloneable
 
   public String toString()
   {
-    return name + ", Type: " + type + ", Level: " + level + ", Health: " + health;
+    return name + ", Type: " + type + ANSI_YELLOW + ", Level: " + level + ANSI_GREEN +  ", Health: " + health + ANSI_RESET;
   }
 
   public boolean isFainted()

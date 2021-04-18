@@ -14,7 +14,7 @@ import static lmh.interfaces.TextColors.ANSI_RESET;
 
 // Abstracts and holds state for all heroes in the game.
 // Heroes are main users of all items in the game, so they implement many interfaces.
-public abstract class Hero extends Creature implements Fighter, User, Trader, Drawable
+public abstract class Hero extends Creature implements Fighter, User, Trader, Drawable, TextColors
 {
   protected int experience;
   protected int gold;
@@ -133,11 +133,11 @@ public abstract class Hero extends Creature implements Fighter, User, Trader, Dr
   public String toString()
   {
     if (isFainted())
-      return name + " has fainted!";
+      return ANSI_RED + name + " has fainted!" + ANSI_RESET;
 
-    return super.toString() + ", Experience: " + experience + ", Gold: " + gold +
-           ", Mana: " + mana + ", Strength: " + strength + ", Dexterity: " +
-           dexterity + ", Agility: " + agility + ", Next Level: " + nextLevel;
+    return super.toString() + ANSI_CYAN + ", Experience: " + experience + ANSI_YELLOW + ", Gold: " + gold +
+           ANSI_PURPLE + ", Mana: " + mana + ANSI_RED+ ", Strength: " + strength + ANSI_CYAN +  ", Dexterity: " +
+           dexterity + ANSI_YELLOW +  ", Agility: " + agility + ANSI_GREEN + ", Next Level: " + nextLevel + ANSI_RESET;
   }
 
   public void draw()
@@ -352,7 +352,7 @@ public abstract class Hero extends Creature implements Fighter, User, Trader, Dr
     return;
   }
 
-  // TODO: 2021/4/12 teleport  / back to nexus 
+  // TODO: 2021/4/12 teleport  / back to nexus
   public void teleport(){};
 
   public void backToNexus(){};
